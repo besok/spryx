@@ -1,0 +1,64 @@
+# =========================
+# CLion / JetBrains IDEs
+# =========================
+.idea/
+cmake-build-*/
+*.iws
+*.iml
+*.workspace
+
+# =========================
+# CMake Artifacts
+# =========================
+build/
+out/
+bin/
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# =========================
+# C++ Build Artifacts
+# =========================
+*.o
+*.obj
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+*.out
+*.exe
+*.app
+
+# =========================
+# C++20 Modules Cache
+# (GCC, Clang, and MSVC artifacts)
+# =========================
+*.gcm
+*.pcm
+*.ifc
+*.ifc.*
+
+# =========================
+# OS Specific
+# =========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# =========================
+# Misc / Debugging
+# =========================
+*.log
+core
+core.*
+vgcore.*
