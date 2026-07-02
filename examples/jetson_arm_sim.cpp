@@ -1,5 +1,8 @@
-//
-// Created by zhguc on 6/18/2026.
-//
+#include <iostream>
+#include "spryx/rnea.h"
+#include "spryx/primitives.h"
 
-#include "jetson_arm_sim.h"
+int main() {
+    std::cout << "Jetson Arm simulation running..." << std::endl;
+    return 0;
+}

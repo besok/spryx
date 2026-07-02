@@ -1,8 +1,4 @@
-cmake_minimum_required(VERSION 4.0)
-project(spryx)
+add_executable(test_rnea test_rnea.cpp)
+target_link_libraries(test_rnea PRIVATE spryx)
 
-set(CMAKE_CXX_STANDARD 20)
-
-add_library(spryx STATIC library.cpp
-        include/spryx/rnea.h
-)
+add_test(NAME test_rnea COMMAND test_rnea)
