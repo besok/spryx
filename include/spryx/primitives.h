@@ -1,6 +1,7 @@
 #ifndef SPRYX_ELEMS_H
 #define SPRYX_ELEMS_H
 #include <cmath>
+#include <format>
 
 static double degToRad(const double deg) {
     return deg * M_PI / 180.0;
@@ -10,27 +11,31 @@ struct Vec3 {
     double x, y, z;
 
     Vec3 operator+(const Vec3 &other) const {
-        return Vec3(x + other.x, y + other.y, z + other.z);
+        return {x + other.x, y + other.y, z + other.z};
     }
 
     Vec3 operator-(const Vec3 &other) const {
-        return Vec3(x - other.x, y - other.y, z - other.z);
+        return {x - other.x, y - other.y, z - other.z};
     }
 
     Vec3 operator*(const double scalar) const {
-        return Vec3(x * scalar, y * scalar, z * scalar);
+        return {x * scalar, y * scalar, z * scalar};
     }
 
     Vec3 operator*(const Vec3 &other) const {
-        return Vec3(x * other.x, y * other.y, z * other.z);
+        return {x * other.x, y * other.y, z * other.z};
     }
 
     Vec3 operator/(const double scalar) const {
-        return Vec3(x / scalar, y / scalar, z / scalar);
+        return {x / scalar, y / scalar, z / scalar};
     }
 
     [[nodiscard]] Vec3 cross(const Vec3 &o) const {
-        return Vec3(y * o.z - z * o.y, z * o.x - x * o.z, x * o.y - y * o.x);
+        return {y * o.z - z * o.y, z * o.x - x * o.z, x * o.y - y * o.x};
+    }
+
+    [[nodiscard]] std::string to_string() const {
+        return std::format("Vec3({:.4f}, {:.4f}, {:.4f})", x, y, z);
     }
 };
 
@@ -40,11 +45,11 @@ struct Rot3 {
     Rot3() = default;
 
     Vec3 operator*(const Vec3 &v) const {
-        return Vec3(
+        return {
             mx[0][0] * v.x + mx[0][1] * v.y + mx[0][2] * v.z,
             mx[1][0] * v.x + mx[1][1] * v.y + mx[1][2] * v.z,
             mx[2][0] * v.x + mx[2][1] * v.y + mx[2][2] * v.z
-        );
+        };
     }
 
     static Rot3 diag(double a, double b, double c) {
@@ -97,10 +102,19 @@ struct Rot3 {
 
     [[nodiscard]] Rot3 transpose() const {
         Rot3 t;
-        for(int r=0; r<3; ++r)
-            for(int c=0; c<3; ++c)
+        for (int r = 0; r < 3; ++r)
+            for (int c = 0; c < 3; ++c)
                 t.mx[r][c] = mx[c][r];
         return t;
+    }
+    [[nodiscard]] std::string to_string() const {
+        return std::format(
+            "[ {:8.4f} {:8.4f} {:8.4f} ]\n"
+            "[ {:8.4f} {:8.4f} {:8.4f} ]\n"
+            "[ {:8.4f} {:8.4f} {:8.4f} ]",
+            mx[0][0], mx[0][1], mx[0][2],
+            mx[1][0], mx[1][1], mx[1][2],
+            mx[2][0], mx[2][1], mx[2][2]);
     }
 
     static double degToRad(const double deg) {
@@ -118,6 +132,8 @@ struct Rot3 {
     static Rot3 rotZDeg(const double angleDeg) {
         return rotZ(degToRad(angleDeg));
     }
+
+
 };
 
 

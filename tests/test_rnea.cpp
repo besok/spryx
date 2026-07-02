@@ -1,6 +1,3 @@
-//
-// Created by zhguc on 6/18/2026.
-//
 
 #include <iostream>
 #include "spryx/rnea.h"
@@ -8,6 +5,7 @@
 
 int main() {
     std::cout << "Running RNEA tests..." << std::endl;
-    // Basic instantiations / tests can go here
+    const auto r = Rot3::identity();
+    std::cout << r.to_string() << std::endl;
     return 0;
 }

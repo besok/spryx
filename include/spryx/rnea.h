@@ -1,6 +1,3 @@
-//
-// Created by zhguc on 6/18/2026.
-//
 
 #ifndef SPRYX_RNEA_H
 #define SPRYX_RNEA_H
